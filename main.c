@@ -1,6 +1,19 @@
-// C time :(
 #include <stdio.h>
 #include <stdint.h>
+
+#define NORMALIZATION_FACTOR 0x80000
+
+/*
+each device ID has it's own GPIO
+struct SensorData {
+    device id 
+    sensor type
+
+    data 
+    channel num 
+}
+
+*/
 
 float convertVoltage(float data) {
     return data * 0.5;
@@ -23,8 +36,7 @@ enum conversionState {
 };
 
 float convertToFloat(uint32_t data) {
-    const int normalizationFactor = 0x80000;
-    int normalizedSignedInt = (int) (data) - normalizationFactor;
+    int normalizedSignedInt = (int) (data) - NORMALIZATION_FACTOR;
 
     return (float) (normalizedSignedInt);
 }
