@@ -11,7 +11,7 @@ float convertPressure(float data) {
     return data * 0.5 + 50;
 }
 
-using conversionFunction = std::function<float(float)>;
+using conversionFunction = float(*)(float);
 
 conversionFunction conversionFunctionsArray[] {
     &convertVoltage,
